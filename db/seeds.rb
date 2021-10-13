@@ -12,6 +12,8 @@ end
 
 Book.destroy_all
 
+User.destroy_all
+
 Book.create!(
   title: 'Ruby超入門',
   memo: 'Rubyの文法の基本をやさしくていねいに解説しています。',
