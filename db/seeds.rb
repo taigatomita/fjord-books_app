@@ -42,4 +42,14 @@ Book.create!(
   )
 end
 
+20.times do |n|
+  User.create!(
+    email: "example#{n}@gmail.com",
+    postal_code: "#{n}00000",
+    address: "hoge町#{n}丁目",
+    self_introduction: 'よろしくお願いします！',
+    password: "#{n}qwertyuio"
+  )
+end
+
 puts '初期データの投入が完了しました。' # rubocop:disable Rails/Output
