@@ -1,18 +1,13 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show destroy]
+  before_action :set_user, only: :show
 
   def index
-    @users = User.order(:id).page(params[:page]).per(5)
+    @users = User.order(:id).page(params[:page])
   end
 
   def show; end
-
-  def destroy
-    @user.destroy
-    redirect_to users_path, notice: t('controllers.common.notice_destroy', name: User.model_name.human)
-  end
 
   private
 
