@@ -12,6 +12,8 @@ end
 
 Book.destroy_all
 
+User.destroy_all
+
 Book.create!(
   title: 'Ruby超入門',
   memo: 'Rubyの文法の基本をやさしくていねいに解説しています。',
@@ -39,6 +41,16 @@ Book.create!(
     memo: Faker::Book.genre,
     author: Faker::Book.author,
     picture: picture_file('no-image.png')
+  )
+end
+
+20.times do |n|
+  User.create!(
+    email: "example#{n}@gmail.com",
+    postal_code: "#{n}00000",
+    address: "hoge町#{n}丁目",
+    self_introduction: 'よろしくお願いします！',
+    password: "#{n}qwertyuio"
   )
 end
 
