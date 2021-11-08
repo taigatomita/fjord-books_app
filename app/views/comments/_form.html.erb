@@ -1,0 +1,10 @@
+<%= form_with(model: form_model) do |form| %>
+
+  <div class="field">
+    <%= form.text_area :content, required: :required %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'コメントする' %>
+  </div>
+<% end %>
