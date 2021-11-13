@@ -1,6 +1,6 @@
 <h1>フォロワー</h1>
 
-<% unless @user.followers.empty? %>
+<% if @user.followers.present? %>
   <table>
     <thead>
       <tr>

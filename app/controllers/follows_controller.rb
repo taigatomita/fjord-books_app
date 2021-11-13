@@ -2,22 +2,20 @@
 
 class FollowsController < ApplicationController
   def create
-    user = User.find(params[:follow_id])
-    following = current_user.follow(user)
-    if following.save
+    user = User.find(params[:followee_id])
+    if current_user.follow(user)
       redirect_to user, notice: 'ユーザーをフォローしました'
     else
-      redirect_to user, notice: 'ユーザーのフォローに失敗しました'
+      redirect_to user, alert: 'ユーザーのフォローに失敗しました'
     end
   end
 
   def destroy
-    user = User.find(params[:follow_id])
-    following = current_user.unfollow(user)
-    if following.destroy
+    user = User.find(params[:followee_id])
+    if current_user.unfollow(user)
       redirect_to user, notice: 'ユーザーのフォローを解除しました'
     else
-      redirect_to user, notice: 'ユーザーのフォロー解除に失敗しました'
+      redirect_to user, alert: 'ユーザーのフォロー解除に失敗しました'
     end
   end
 end

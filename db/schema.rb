@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_140046) do
+ActiveRecord::Schema.define(version: 2021_11_13_102325) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2021_10_20_140046) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -50,13 +50,13 @@ ActiveRecord::Schema.define(version: 2021_10_20_140046) do
   end
 
   create_table "follows", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "follow_id"
+    t.integer "followee_id", null: false
+    t.integer "follower_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["follow_id"], name: "index_follows_on_follow_id"
-    t.index ["user_id", "follow_id"], name: "index_follows_on_user_id_and_follow_id", unique: true
-    t.index ["user_id"], name: "index_follows_on_user_id"
+    t.index ["followee_id", "follower_id"], name: "index_follows_on_followee_id_and_follower_id", unique: true
+    t.index ["followee_id"], name: "index_follows_on_followee_id"
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,6 +77,4 @@ ActiveRecord::Schema.define(version: 2021_10_20_140046) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "follows", "users"
-  add_foreign_key "follows", "users", column: "follow_id"
 end

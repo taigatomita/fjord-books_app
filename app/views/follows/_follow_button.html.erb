@@ -1,12 +1,12 @@
-<% unless current_user == @user %> 
-  <% if current_user.following?(@user) %>
-    <%= form_with(model: current_user.follows.find_by(follow_id: @user.id), method: :delete, local: true) do |f| %>
-      <%= hidden_field_tag :follow_id, @user.id %>
+<% if current_user != user %> 
+  <% if current_user.following?(user) %>
+    <%= form_with(model: current_user.active_follows.find_by(followee_id: user.id), method: :delete) do |f| %>
+      <%= hidden_field_tag :followee_id, user.id %>
       <%= f.submit 'アンフォロー' %>
     <% end %>
   <% else %>
-    <%= form_with(model: current_user.follows.build, local: true) do |f| %>
-      <%= hidden_field_tag :follow_id, @user.id %>
+    <%= form_with(model: current_user.active_follows.build) do |f| %>
+      <%= hidden_field_tag :followee_id, user.id %>
       <%= f.submit 'フォロー' %>
     <% end %>
   <% end %>
