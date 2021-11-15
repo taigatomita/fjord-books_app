@@ -6,10 +6,10 @@
       <% comments.each do |comment| %>
       <li>
         <tr>
-          <% if comment.user.name %>
-            <td><%= comment.user.name %>:</td>
+          <% if comment.user.name.present? %>
+            <td><%= comment.user.name %>: </td>
           <% else %>
-            <td><%= comment.user.email %>:</td>
+            <td><%= comment.user.email %>: </td>
           <% end %>
           <td><%= comment.content %></td>
           <td><%= l comment.created_at, format: :short %></td>

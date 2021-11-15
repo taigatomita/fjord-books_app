@@ -7,13 +7,13 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build(comment_params)
     @comment.user_id = current_user.id
 
-    @comment.save
-    redirect_to request.referer, notice: 'コメントを投稿しました'
+    @comment.save!
+    redirect_to request.referer, notice: t('controllers.common.notice_create', name: Comment.model_name.human)
   end
 
   def destroy
-    @comment.destroy
-    redirect_to request.referer, notice: 'コメントを削除しました'
+    @comment.destroy!
+    redirect_to request.referer, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human)
   end
 
   private

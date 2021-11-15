@@ -4,16 +4,16 @@ class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
 
   def index
-    @reports = Report.where(user_id: params[:user_id])
+    @reports = Report.all.order(:id)
   end
 
   def show
-    @comments = @report.comments.all
+    @comments = @report.comments.all.order(:id)
   end
 
   def new
     @report = Report.new
-    @user = User.find(params[:user_id])
+    @user = User.find(current_user.id)
   end
 
   def edit; end
@@ -21,8 +21,8 @@ class ReportsController < ApplicationController
   def create
     @report = current_user.reports.new(report_params)
 
-    if @report.save
-      redirect_to user_reports_path, notice: '日報を保存しました。'
+    if @report.save!
+      redirect_to reports_path, notice: t('controllers.common.notice_create', name: Report.model_name.human)
     else
       render :new
     end
@@ -30,15 +30,15 @@ class ReportsController < ApplicationController
 
   def update
     if @report.update(report_params)
-      redirect_to user_reports_path, notice: '日報を保存しました。'
+      redirect_to reports_path, notice: t('controllers.common.notice_update', name: Report.model_name.human)
     else
       render :edit
     end
   end
 
   def destroy
-    @report.destroy
-    redirect_to user_reports_path, notice: '日報を削除しました。'
+    @report.destroy!
+    redirect_to reports_path, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
   end
 
   private

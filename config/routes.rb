@@ -6,13 +6,13 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy], module: :books
   end
   resources :users, only: %i[index show] do
-    resources :reports do
-      resources :comments, only: %i[create destroy], module: :reports
-    end
     resource :relationships, only: %i[create destroy]
     scope module: :users do
       resources :followings, only: [:index]
       resources :followers, only: [:index]
     end
+  end
+  resources :reports do
+    resources :comments, only: %i[create destroy], module: :reports
   end
 end

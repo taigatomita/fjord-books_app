@@ -22,3 +22,4 @@ ja:
         title: タイトル
         content: 内容
         created_at: 投稿日時
+        user: 投稿者
