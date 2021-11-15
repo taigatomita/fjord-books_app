@@ -33,6 +33,18 @@
   <% end %>
 </p>
 
+<p>
+  <strong><%= link_to "フォロー: #{@user.followings.size}", followings_user_path(params[:id]) %></strong>
+</p>
+
+<p>
+  <strong><%= link_to "フォロワー: #{@user.followers.size}", followers_user_path(params[:id]) %></strong>
+</p>
+
+<p>
+<%= render 'follows/follow_button', user: @user %> 
+</p>
+
 <% if current_user == @user %>
   <%= link_to t('views.common.edit'), edit_user_registration_path %> |
 <% end %>
