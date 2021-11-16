@@ -17,7 +17,7 @@
 
 <%= render 'comments/index', commentable: @report, comments: @comments %>
 
-<%= render 'comments/form', form_model: [@report, Comment.new] %>
+<%= render 'comments/form', commentable: @report %>
 
 <% if current_user == @report.user %>
 <%= link_to t('views.common.edit'), edit_report_path(@report) %> |

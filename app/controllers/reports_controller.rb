@@ -2,6 +2,7 @@
 
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
+  before_action :check_user, only: %i[edit update destroy]
 
   def index
     @reports = Report.all.order(:id)
@@ -21,7 +22,7 @@ class ReportsController < ApplicationController
   def create
     @report = current_user.reports.new(report_params)
 
-    if @report.save!
+    if @report.save
       redirect_to reports_path, notice: t('controllers.common.notice_create', name: Report.model_name.human)
     else
       render :new
@@ -49,5 +50,11 @@ class ReportsController < ApplicationController
 
   def report_params
     params.require(:report).permit(:title, :content)
+  end
+
+  def check_user
+    return if current_user == @report.user
+
+    redirect_to reports_path
   end
 end
