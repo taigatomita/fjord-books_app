@@ -6,7 +6,7 @@
       <% comments.each do |comment| %>
       <li>
         <tr>
-          <td><%= comment.contributor_name %>: </td>
+          <td><%= comment.user.contributor_name %>: </td>
           <td><%= comment.content %></td>
           <td><%= l comment.created_at, format: :short %></td>
           <% if comment.user == current_user %>
