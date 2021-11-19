@@ -1,0 +1,22 @@
+<p>
+  <strong><%= Comment.model_name.human %>:</strong>
+  <br>
+  <% if comments.present? %>
+    <ul>
+      <% comments.each do |comment| %>
+      <li>
+        <tr>
+          <td><%= comment.user.contributor_name %>: </td>
+          <td><%= comment.content %></td>
+          <td><%= l comment.created_at, format: :short %></td>
+          <% if comment.user == current_user %>
+            <td><%= link_to t('views.common.destroy'), polymorphic_url([commentable, comment]), method: :delete, data: { confirm: t('views.common.delete_confirm') } %></td>
+          <% end %>
+        </tr>
+      </li>
+      <% end %>
+    </ul>
+  <% else %> 
+    <p>コメントはありません</p>
+  <% end %>
+</p> 
