@@ -1,9 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+ruby_book:
+  title: Ruby
+  memo: わかりやすい
+  author: carol
 
-one:
-  title: MyString
-  memo: MyText
-
-two:
-  title: MyString
-  memo: MyText
+rails_book:
+  title: Rails
+  memo: とてもわかりやすい
+  author: dave
