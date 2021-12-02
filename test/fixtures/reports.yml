@@ -1,11 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+calendar:
+  user: alice
+  title: Rubyでカレンダーを作る
+  content: 完成した!
 
-one:
-  user: one
-  title: MyString
-  content: MyText
-
-two:
-  user: two
-  title: MyString
-  content: MyText
+bowling:
+  user: bob
+  title: Rubyでボウリングのスコア計算プログラムを作る
+  content: 大変だった！

@@ -3,7 +3,16 @@
 require 'test_helper'
 
 class ReportTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test '#editable?(target_user)' do
+    user = users(:alice)
+    report = reports(:calendar)
+
+    report.editable?(user)
+  end
+
+  test '#created_on' do
+    report = reports(:calendar)
+
+    assert report.created_on.instance_of?(Date)
+  end
 end
